@@ -31,6 +31,10 @@ jobs:
         with:
           path: .
 
+      - name: terraform plan
+        uses: dflook/terraform-plan@v1
+        with:
+          path: .
           #      - name: Terraform Format
           #        uses: rewindio/terraform-github-actions@master
           #        with:
