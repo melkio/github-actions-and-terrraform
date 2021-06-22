@@ -44,3 +44,10 @@ jobs:
           workspace: ${{ env.WORKSPACE }}
           var_file: ${{ env.WORKSPACE }}.tfvar
 
+      - uses: azure/login@v1
+        with:
+          creds: '{"clientId":"${{ secrets.AZURE_AD_CLIENT_ID }}","clientSecret":"${{ secrets.AZURE_AD_CLIENT_SECRET }}","subscriptionId":"${{ secrets.AZURE_SUBSCRIPTION_ID }}","tenantId":"${{ secrets.AZURE_AD_TENANT_ID }}"}'
+
+      - name: Execute script
+        run: |
+          ./configure.sh ${{ env.WORKSPACE }} ${{ steps.tf-outputs.outputs.resource_group_id }}          
