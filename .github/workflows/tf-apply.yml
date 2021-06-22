@@ -40,6 +40,7 @@ jobs:
         id: tf-outputs
         with:
           path: .
+          workspace: ${{ env.WORKSPACE }}
 
       - name: Execute script
         run: |
