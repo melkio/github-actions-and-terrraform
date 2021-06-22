@@ -10,7 +10,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        workspace: [test]
+        workspace: [test1, test2]
 
     name: ${{ matrix.workspace }}
     runs-on: ubuntu-latest
@@ -35,6 +35,8 @@ jobs:
         uses: dflook/terraform-plan@v1
         with:
           path: .
+          workspace: ${{ env.WORKSPACE }}
+          var_file: ${{ env.WORKSPACE }}.tfvar
           #      - name: Terraform Format
           #        uses: rewindio/terraform-github-actions@master
           #        with:
