@@ -1,0 +1,46 @@
+name: terraform-plan
+
+on: pull_request
+
+env:
+  TF_VERSION: 0.12.20
+
+jobs:
+  terraform-plan:
+    strategy:
+      fail-fast: false
+      matrix:
+        workspace: [test1, test2]
+
+    name: ${{ matrix.workspace }}
+    runs-on: ubuntu-latest
+
+    env:
+      WORKSPACE: ${{ matrix.workspace }}
+      ARM_CLIENT_ID: ${{ secrets.AZURE_AD_CLIENT_ID }}
+      ARM_CLIENT_SECRET: ${{ secrets.AZURE_AD_CLIENT_SECRET }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      ARM_TENANT_ID: ${{ secrets.AZURE_AD_TENANT_ID }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@1.0.0
+
+      - name: Use branch workspace
+        uses: dflook/terraform-new-workspace@v1
+        with:
+          path: .
+          workspace: ${{ env.WORKSPACE }}
+
+      - name: terraform fmt
+        uses: dflook/terraform-fmt-check@v1
+        with:
+          path: .
+
+      - name: terraform plan
+        uses: dflook/terraform-plan@v1
+        with:
+          path: .
+          workspace: ${{ env.WORKSPACE }}
+          var_file: ${{ env.WORKSPACE }}.tfvar
+
