@@ -19,6 +19,6 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "main" {
-  name     = "group-with-terraform-and-github-actions"
+  name     = var.resource_group_name
   location = "West Europe"
 }
