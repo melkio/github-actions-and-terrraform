@@ -26,7 +26,7 @@ provider "azuread" {
 }
 
 resource "azuread_application" "main" {
-  display_name = "demo1234"
+  display_name = var.sp_name
 }
 
 resource "azuread_service_principal" "main" {
