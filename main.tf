@@ -34,7 +34,7 @@ resource "azuread_service_principal" "main" {
 }
 
 resource "random_string" "password" {
-  length = 32
+  length = 40
 }
 
 resource "azuread_service_principal_password" "main" {
