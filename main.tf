@@ -43,3 +43,7 @@ resource "azuread_service_principal_password" "main" {
   end_date_relative    = "8760h"
 }
 
+resource "azurerm_resource_group" "main" {
+  name     = var.resource_group_name
+  location = "West Europe"
+}
