@@ -19,5 +19,6 @@ jobs:
       - name: Prepare sftp configuration artifacts
         run: |
           echo "${{ secrets.YQ_USERS }}" > users.json
+          cat users.json
           jq 'map({ "mountPath" : ("/home/" + .Username + "/sftp"), "name": "volume" })' users.json | yq -P eval > volumes.yaml
           cat volumes.yaml
