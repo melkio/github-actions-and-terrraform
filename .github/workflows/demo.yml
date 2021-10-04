@@ -16,7 +16,6 @@ jobs:
           sudo add-apt-repository ppa:rmescandon/yq
           sudo apt update
           sudo apt-get install jq yq
-    chmod +x /usr/bin/yq
       - name: Prepare sftp configuration artifacts
         run: |
           echo "${{ secrets.YQ_USERS }}" > users.json
