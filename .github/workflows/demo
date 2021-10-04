@@ -1,0 +1,24 @@
+name: Update version and deploy artifacts
+
+on:
+  push:
+
+jobs:
+  
+  demo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install tools
+        run: |
+          sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys CC86BB64
+          sudo add-apt-repository ppa:rmescandon/yq
+          sudo apt update
+          sudo apt-get install jq yq
+    chmod +x /usr/bin/yq
+      - name: Prepare sftp configuration artifacts
+        run: |
+          echo "${{ secrets.YQ_USERS }}" > users.json
+          jq 'map({ "mountPath" : ("/home/" + .Username + "/sftp"), "name": "volume" })' users.json | yq -P eval > volumes.yaml
+          cat volumes.yaml
