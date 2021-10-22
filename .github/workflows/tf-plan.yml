@@ -42,5 +42,5 @@ jobs:
         with:
           path: .
           workspace: ${{ env.WORKSPACE }}
-          var_file: ${{ env.WORKSPACE }}.tfvar
+          var_file: ${{ env.WORKSPACE }}.tfvars
 

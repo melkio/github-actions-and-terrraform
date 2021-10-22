@@ -1,2 +1,1 @@
 resource_group_name = "test1"
-sp_name = "test-1-sp"
