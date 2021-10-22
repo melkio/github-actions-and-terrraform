@@ -34,18 +34,3 @@ jobs:
           path: .
           workspace: ${{ env.WORKSPACE }}
           var_file: ${{ env.WORKSPACE }}.tfvar
-
-      - name: Get outputs
-        uses: dflook/terraform-output@v1
-        id: tf-outputs
-        with:
-          path: .
-          workspace: ${{ env.WORKSPACE }}
-
-      - uses: azure/login@v1
-        with:
-          creds: '{"clientId":"${{ secrets.AZURE_AD_CLIENT_ID }}","clientSecret":"${{ secrets.AZURE_AD_CLIENT_SECRET }}","subscriptionId":"${{ secrets.AZURE_SUBSCRIPTION_ID }}","tenantId":"${{ secrets.AZURE_AD_TENANT_ID }}"}'
-
-      - name: Execute script
-        run: |
-          ./configure.sh ${{ env.WORKSPACE }} ${{ steps.tf-outputs.outputs.resource_group_id }}          
