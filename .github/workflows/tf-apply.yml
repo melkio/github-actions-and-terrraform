@@ -3,7 +3,7 @@ name: terraform-apply
 on:
   push:
     branches:
-      - main
+      - master
 env:
   TF_VERSION: 0.12.20
 
