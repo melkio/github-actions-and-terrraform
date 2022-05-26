@@ -1,7 +1,0 @@
-CURRENT_ENV=$1
-RESOURCE_GROUP_ID=$2
-
-echo $CURRENT_ENV
-echo $RESOURCE_GROUP_ID
-
-az group list

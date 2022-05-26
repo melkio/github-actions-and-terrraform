@@ -3,22 +3,15 @@ name: terraform-apply
 on:
   push:
     branches:
-      - master
+      - main
 env:
   TF_VERSION: 0.12.20
 
 jobs:
   terraform-plan:
-    strategy:
-      fail-fast: false
-      matrix:
-        workspace: [test1, test2]
-
-    name: ${{ matrix.workspace }}
     runs-on: ubuntu-latest
 
     env:
-      WORKSPACE: ${{ matrix.workspace }}
       ARM_CLIENT_ID: ${{ secrets.AZURE_AD_CLIENT_ID }}
       ARM_CLIENT_SECRET: ${{ secrets.AZURE_AD_CLIENT_SECRET }}
       ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
@@ -32,5 +25,4 @@ jobs:
         uses: dflook/terraform-apply@v1
         with:
           path: .
-          workspace: ${{ env.WORKSPACE }}
-          var_file: ${{ env.WORKSPACE }}.tfvar
+          var_file: test.tfvar
