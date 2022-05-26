@@ -22,3 +22,8 @@ resource "azurerm_resource_group" "main" {
   name     = var.resource_group_name
   location = "West Europe"
 }
+
+resource "azurerm_resource_group" "main2" {
+  name     = "aspitalia"
+  location = "West Europe"
+}
