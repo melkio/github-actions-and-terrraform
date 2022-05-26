@@ -25,4 +25,4 @@ jobs:
         uses: dflook/terraform-apply@v1
         with:
           path: .
-          var_file: test.tfvar
+          var_file: test.tfvars
