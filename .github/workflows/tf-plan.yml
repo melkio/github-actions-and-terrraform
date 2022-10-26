@@ -21,11 +21,7 @@ jobs:
 
       - name: terraform fmt
         uses: dflook/terraform-fmt-check@v1
-        with:
-          path: .
 
       - name: terraform plan
         uses: dflook/terraform-plan@v1
-        with:
-          path: .
 
