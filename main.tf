@@ -12,3 +12,8 @@ provider "azurerm" {
 
   }
 }
+
+resource "azurerm_resource_group" "container" {
+    name = "CloudDay2022"
+    location = "West Europe"
+}
